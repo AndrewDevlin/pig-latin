@@ -1,5 +1,5 @@
 // business logic
-var vowels = ['a', 'e', 'i', 'o', 'u', 'y'];
+var vowels = ['a', 'e', 'i', 'o', 'u'];
 
 var isVowel = function(letter) {
   if (letter.length !== 1) {
@@ -18,7 +18,7 @@ var onsetConsonants = function(word) {
 
   for (var i = 0; i < word.length; i++) {
     var char = word.charAt(i);
-    if (isVowel(char)) {
+    if (isVowel(char) || (i !== 0 && char.toLowerCase() === 'y')) {
       break;
     }
     result += char;
