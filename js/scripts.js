@@ -37,6 +37,10 @@ var translateWord = function(word) {
   var onset = word.charAt(0);
   var beginsWithVowel = false;
 
+  if (word.length === 0) {
+    return '';
+  }
+
   // Check for presence of initial vowel and set flag accordingly
   beginsWithVowel = isVowel(onset);
 
@@ -50,12 +54,34 @@ var translateWord = function(word) {
   return result;
 };
 
+var isAlpha = function(charCode) {
+  return (charCode >= 65 && charCode <= 90) || (charCode >= 97 && charCode <= 122);
+}
+
+var parseEnglish = function(text) {
+  var result = '';
+  var word = '';
+
+  for (var i = 0; i < text.length; i++) {
+    var charCode = text.charCodeAt(i);
+
+    if (isAlpha(charCode)) {
+      word += text.charAt(i);
+    } else {
+      result += translateWord(word);
+      word = '';
+      result += text.charAt(i);
+    }
+  }
+  return result;
+};
+
 // user interface logic
 $(document).ready(function() {
   $("form#translator").submit(function(event) {
     event.preventDefault();
     var input = $("#english").val();
-    var output = translateWord(input);
+    var output = parseEnglish(input);
 
     $("#pig-latin p").text(output);
     $("#pig-latin").show();
