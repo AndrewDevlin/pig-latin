@@ -18,6 +18,11 @@ var onsetConsonants = function(word) {
 
   for (var i = 0; i < word.length; i++) {
     var char = word.charAt(i);
+
+    if ((char.toLowerCase() === 'u') && (word.charAt(i-1).toLowerCase() === 'q')) {
+      result += char;
+      continue;
+    }
     if (isVowel(char) || (i !== 0 && char.toLowerCase() === 'y')) {
       break;
     }
