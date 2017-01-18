@@ -1,3 +1,7 @@
 #pig-latin {
   display: none;
 }
+
+#pig-latin p {
+  font-family: fantasy;
+}
