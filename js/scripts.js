@@ -6,7 +6,7 @@ var isVowel = function(letter) {
     throw new Error("argument must be single-letter string");
   }
   for (var i = 0; i < vowels.length; i++) {
-    if (letter === vowels[i]) {
+    if (letter.toLowerCase() === vowels[i]) {
       return true;
     }
   }
